@@ -1,6 +1,7 @@
 import * as Nightmare from "nightmare";
 import * as moment from 'moment';
-const nightmare = new Nightmare({ show: false });
+
+const nightmare = new Nightmare({show: false});
 
 var argv = require('minimist')(process.argv.slice(2));
 console.log(argv)
@@ -19,9 +20,6 @@ console.log(myMoment.month())
 const dayOption = myMoment.date();
 const monthOption = myMoment.month();
 
-
-//--usr 59629 --pwd h3lpm3
-
 nightmare
     .goto('https://www.brsgolf.com/wychwoodpark/member/login')
     .type('[name="_username"]', user)
@@ -29,37 +27,46 @@ nightmare
     .click('input[name="SUBMIT"]')
     .wait('.book_a_tee_time_button')
     .click('.book_a_tee_time_button')
-    .evaluate(selectMonth,monthOption)
-    .evaluate(selectDay,dayOption)
+    .evaluate(selectMonth, monthOption)
+    .evaluate(selectDay, dayOption)
     .wait(".table_white_text")
-    .evaluate(()=>{
+    .evaluate(() => {
 
         let inputs = document.querySelector(".table_white_text tbody").querySelectorAll("tr");
         for (var i = 0, length = inputs.length; i < length; i++) {
-            if (inputs[i].innerText.indexOf('16:') >= 0 && inputs[i].innerText.trim().length ==5) {
-                 var val = inputs[i].querySelectorAll("input[name=\"SubmitButton\"]");
 
-                 val[0].click();
-                return inputs[i].innerText;
+            var data = inputs[i].innerText.trim();
+            if (data.indexOf('16:') >= 0 && data.length == 5) {
+                var val = inputs[i].querySelectorAll("input[name=\"SubmitButton\"]");
+
+                val[0].click();
+                return data;
             }
         }
-    })
-        .wait('.back_button_cell a')
-        .wait(1000)
-        .select("[name='Player1_uid']","448")
-        .select("[name='Player2_uid']","449")
-        .select("[name='Player3_uid']","Member")
-        .select("[name='Player4_uid']","Member")
-        .wait(9000)
-        .click('[name=\'SubmitButton\']')
-        //.click('.back_button_cell a')
-    .end()
+        return "no time";
+    }).then(console.log)
+    .then(() =>
+
+        return nightmare
+            .wait('.back_button_cell a')
+            .wait(1000)
+            .select("[name='Player1_uid']", "448")
+            .select("[name='Player2_uid']", "449")
+            .select("[name='Player3_uid']", "Member")
+            .select("[name='Player4_uid']", "Member")
+            .wait(1000)
+            //.click('[name=\'SubmitButton\']')
+            .click('.back_button_cell a')
+            .end(() => "finished")
+
+
+    )
     .then(console.log)
     .catch((error) => {
         console.error('Search failed:', error);
     });
 
-console.log("finished");
+console.log("start");
 
 function selectMonth(month) {
 
@@ -69,9 +76,9 @@ function selectMonth(month) {
     test2.item(month).click()
 }
 
-function selectDay(dayOption){
+function selectDay(dayOption) {
 
     console.log(dayOption);
-    let day  = document.querySelector(".tableList tbody").getElementsByTagName("tr")[dayOption];
+    let day = document.querySelector(".tableList tbody").getElementsByTagName("tr")[dayOption];
     day.getElementsByClassName("day_num").item(0).getElementsByTagName("a").item(0).click();
 }
