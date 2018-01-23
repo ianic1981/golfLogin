@@ -1,0 +1,36 @@
+{
+  "name": "golflogin",
+  "version": "1.0.0",
+  "description": "a typescript example",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "tsc": "tsc",
+    "pretest": "npm run tsc"
+  },
+  "dependencies": {
+    "jasmine": "^2.4.1",
+    "typescript": "2.1",
+    "nightmare": "^2.10.0",
+    "chai": "^4.1.2",
+    "moment": "^2.20.1",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.4",
+    "@types/jasminewd2": "^2.0.3",
+    "@types/nightmare": "^2.10.1",
+    "jasmine-spec-reporter": "^4.2.1",
+    "phantomjs-prebuilt": "^2.1.16",
+    "ts-node": "^3.0.2"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianic1981/golfLogin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ianic1981/golfLogin/issues"
+  },
+  "homepage": "https://github.com/ianic1981/golfLogin#readme"
+}
