@@ -55,8 +55,8 @@ nightmare
             .select("[name='Player3_uid']", "Member")
             .select("[name='Player4_uid']", "Member")
             .wait(1000)
-            //.click('[name=\'SubmitButton\']')
-            .click('.back_button_cell a')
+            .click('[name=\'SubmitButton\']')
+            //.click('.back_button_cell a')
             .end(() => "finished")
 
 
