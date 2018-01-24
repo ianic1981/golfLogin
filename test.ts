@@ -1,14 +1,16 @@
 import * as Nightmare from "nightmare";
 import * as moment from 'moment';
 
-const nightmare = new Nightmare({show: false});
+const nightmare = new Nightmare({show: true});
 
 var argv = require('minimist')(process.argv.slice(2));
 console.log(argv)
-console.log(process.env.pwd)
+
 
 var user = argv.user;
 var pwd = process.env.pwd || argv.pwd;
+
+console.log(pwd)
 
 let myMoment: moment.Moment = moment();
 
@@ -37,7 +39,7 @@ nightmare
         for (var i = 0, length = inputs.length; i < length; i++) {
 
             var data = inputs[i].innerText.trim();
-            if (data.indexOf('16:') >= 0 && data.length == 5) {
+            if (data.indexOf('08:') >= 0 && data.length == 5) {
                 var val = inputs[i].querySelectorAll("input[name=\"SubmitButton\"]");
 
                 val[0].click();
@@ -55,8 +57,9 @@ nightmare
             .select("[name='Player2_uid']", "449")
             .select("[name='Player3_uid']", "Member")
             .select("[name='Player4_uid']", "Member")
-            .wait(1000)
+            .wait(3000)
             .click('[name=\'SubmitButton\']')
+            .wait(1000)
             //.click('.back_button_cell a')
             .end(() => "finished")
 
