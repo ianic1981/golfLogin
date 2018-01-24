@@ -5,9 +5,10 @@ const nightmare = new Nightmare({show: false});
 
 var argv = require('minimist')(process.argv.slice(2));
 console.log(argv)
+console.log(process.env.pwd)
 
 var user = argv.user;
-var pwd = argv.pwd;
+var pwd = process.env.pwd || argv.pwd;
 
 let myMoment: moment.Moment = moment();
 
