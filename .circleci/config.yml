@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/node:latest-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -34,7 +34,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: node tmp/test.js --user 59629 --pwd h3lpm3
+      - run: node tmp/test.js --user 59629 --pwd 4cc13037-2640-4489-b02e-7b10765f3ca1
 
 
 workflows:
