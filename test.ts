@@ -1,7 +1,7 @@
 import * as Nightmare from "nightmare";
 import * as moment from 'moment';
 
-const nightmare = new Nightmare({show: true});
+const nightmare = new Nightmare({show: false});
 
 var argv = require('minimist')(process.argv.slice(2));
 console.log(argv)
