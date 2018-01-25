@@ -39,13 +39,10 @@ jobs:
 
 workflows:
   version: 2
-  commit-workflow:
-    jobs:
-      - build
   scheduled-workflow:
     triggers:
       - schedule:
-          cron: "0 0 * * 4"
+          cron: "0 20 * * 5"
           filters:
             branches:
               only: master
