@@ -8,7 +8,7 @@ console.log(argv)
 
 
 var user = argv.user;
-var pwd = process.env.pwd || argv.pwd;
+var pwd = process.env.pwd2 || argv.pwd;
 
 console.log(pwd)
 
@@ -58,7 +58,7 @@ nightmare
         return nightmare
             .wait('.back_button_cell a')
             .wait(1000)
-            .select("[name='Player1_uid']", "448")
+            .select("[name='Player1_uid']", "449")
             .select("[name='Player2_uid']", "Member")
             .select("[name='Player3_uid']", "Member")
             .select("[name='Player4_uid']", "Member")

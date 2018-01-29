@@ -34,7 +34,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: node tmp/test.js --user 59629
+      - run: node tmp/test.js --user 59630
 
 
 workflows:
@@ -45,7 +45,9 @@ workflows:
           cron: "0 0 * * *"
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - take2
 
     jobs:
       - build
