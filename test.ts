@@ -35,18 +35,23 @@ nightmare
     .wait(".table_white_text")
     .evaluate(() => {
 
+        var error = "";
         let inputs = document.querySelector(".table_white_text tbody").querySelectorAll("tr");
         for (var i = 0, length = inputs.length; i < length; i++) {
 
             var data = inputs[i].innerText.trim();
-            if (data.indexOf('08:') >= 0 && data.length == 5) {
-                var val = inputs[i].querySelectorAll("input[name=\"SubmitButton\"]");
+            if (data.indexOf('08:') >= 0) {
+                if (data.length == 5) {
+                    var val = inputs[i].querySelectorAll("input[name=\"SubmitButton\"]");
 
-                val[0].click();
-                return data;
+                    val[0].click();
+                    return data;
+                }else{
+                    error += " "+error;
+                }
             }
         }
-        return "no time";
+        return "no time: "+error;
     }).then(console.log)
     .then(() =>
 
