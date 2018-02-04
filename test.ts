@@ -33,7 +33,11 @@ nightmare
     .evaluate(selectMonth, monthOption)
     .evaluate(selectDay, dayOption)
     .wait(".table_white_text")
-    .evaluate(() => {
+    .evaluate(() => {return document.querySelector(".day_page_date").innerText;})
+    //.wait(10000)
+    .then(console.log)
+    .then(() => {
+        nightmare.evaluate(() => {
 
         var error = "";
         let inputs = document.querySelector(".table_white_text tbody").querySelectorAll("tr");
@@ -47,12 +51,13 @@ nightmare
                     val[0].click();
                     return data;
                 }else{
-                    error += " "+error;
+                    error += " "+data;
                 }
             }
         }
-        return "no time: "+error;
+        throw new Error( "no time: "+error);
     }).then(console.log)
+    })
     .then(() =>
 
         return nightmare
@@ -88,6 +93,17 @@ function selectMonth(month) {
 function selectDay(dayOption) {
 
     console.log(dayOption);
-    let day = document.querySelector(".tableList tbody").getElementsByTagName("tr")[dayOption];
-    day.getElementsByClassName("day_num").item(0).getElementsByTagName("a").item(0).click();
+
+    let length =  0;
+
+    while(length <  document.querySelector(".tableList tbody").getElementsByTagName("tr").length){
+        if(document.querySelector(".tableList tbody").getElementsByTagName("tr").item(length).innerText.indexOf(dayOption) > -1){
+            let day = document.querySelector(".tableList tbody").getElementsByTagName("tr")[length];
+            day.getElementsByClassName("day_num").item(0).getElementsByTagName("a").item(0).click();
+            length = 999;
+        }
+        length++;
+    }
+
+
 }
