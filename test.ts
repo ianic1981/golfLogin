@@ -37,42 +37,42 @@ nightmare
     //.wait(10000)
     .then(console.log)
     .then(() => {
-        nightmare.evaluate(() => {
+        return nightmare.evaluate(() => {
 
-        var error = "";
-        let inputs = document.querySelector(".table_white_text tbody").querySelectorAll("tr");
-        for (var i = 0, length = inputs.length; i < length; i++) {
+            var error = "";
+            let inputs = document.querySelector(".table_white_text tbody").querySelectorAll("tr");
+            for (var i = 0, length = inputs.length; i < length; i++) {
 
-            var data = inputs[i].innerText.trim();
-            if (data.indexOf('08:') >= 0) {
-                if (data.length == 5) {
-                    var val = inputs[i].querySelectorAll("input[name=\"SubmitButton\"]");
+                var data = inputs[i].innerText.trim();
+                if (data.indexOf('08:') >= 0) {
+                    if (data.length == 5) {
+                        var val = inputs[i].querySelectorAll("input[name=\"SubmitButton\"]");
 
-                    val[0].click();
-                    return data;
-                }else{
-                    error += " "+data;
+                        val[0].click();
+                        return data;
+                    }else{
+                        error += " "+data;
+                    }
                 }
             }
-        }
-        throw new Error( "no time: "+error);
-    }).then(console.log)
+            throw new Error( "no time: "+error);
+        }).then(console.log)
     })
-    .then(() =>
+    .then(() => {
 
-        return nightmare
-            .wait('.back_button_cell a')
-            .wait(1000)
-            .select("[name='Player1_uid']", "449")
-            .select("[name='Player2_uid']", "Member")
-            .select("[name='Player3_uid']", "Member")
-            .select("[name='Player4_uid']", "Member")
-            .wait(3000)
-            .click('[name=\'SubmitButton\']')
-            .wait(1000)
-            //.click('.back_button_cell a')
-            .end(() => "finished")
-
+            return nightmare
+                .wait('.back_button_cell a')
+                .wait(1000)
+                .select("[name='Player1_uid']", "449")
+                .select("[name='Player2_uid']", "Member")
+                .select("[name='Player3_uid']", "Member")
+                .select("[name='Player4_uid']", "Member")
+                .wait(3000)
+                .click('[name=\'SubmitButton\']')
+                .wait(1000)
+                //.click('.back_button_cell a')
+                .end(() => "finished")
+        }
 
     )
     .then(console.log)
