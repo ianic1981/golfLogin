@@ -94,7 +94,7 @@ function selectDay(dayOption) {
 
     console.log(dayOption);
 
-    let length =  0;
+    let length =  1;
 
     while(length <  document.querySelector(".tableList tbody").getElementsByTagName("tr").length){
         if(document.querySelector(".tableList tbody").getElementsByTagName("tr").item(length).innerText.indexOf(dayOption) > -1){
