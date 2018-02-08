@@ -1,7 +1,7 @@
 import * as Nightmare from "nightmare";
 import * as moment from 'moment';
 
-const nightmare = new Nightmare({show: false});
+const nightmare = new Nightmare({show: true});
 
 var argv = require('minimist')(process.argv.slice(2));
 console.log(argv)
@@ -94,7 +94,7 @@ function selectDay(dayOption) {
 
     console.log(dayOption);
 
-    let length =  0;
+    let length =  1;
 
     while(length <  document.querySelector(".tableList tbody").getElementsByTagName("tr").length){
         if(document.querySelector(".tableList tbody").getElementsByTagName("tr").item(length).innerText.indexOf(dayOption) > -1){
