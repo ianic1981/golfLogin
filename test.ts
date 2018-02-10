@@ -43,7 +43,7 @@ nightmare
             let inputs = document.querySelector(".table_white_text tbody").querySelectorAll("tr");
             for (var i = 0, length = inputs.length; i < length; i++) {
 
-                var data = inputs[i].innerText.trim();
+                var data = inputs[i].innerText.replace('18s','').replace("Reserved For Members","").trim();
                 if (data.indexOf('08:') >= 0) {
                     if (data.length == 5) {
                         var val = inputs[i].querySelectorAll("input[name=\"SubmitButton\"]");
