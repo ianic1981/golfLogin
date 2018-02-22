@@ -18,10 +18,10 @@ let myMoment: moment.Moment = moment();
 myMoment.add(21, 'days')
 
 console.log(myMoment.date())
-console.log(myMoment.month())
+console.log(myMoment.format("MMM"))
 
 const dayOption = myMoment.date();
-const monthOption = myMoment.month();
+const monthOption = myMoment.format("MMM");
 
 nightmare
     .goto('https://www.brsgolf.com/wychwoodpark/member/login')
@@ -85,9 +85,19 @@ console.log("start");
 function selectMonth(month) {
 
     console.log(month);
-    var test = document.querySelector(".month_navigation .t_b");
-    var test2 = test.getElementsByTagName("a");
-    test2.item(month).click()
+    // var test = document.querySelector(".month_navigation .t_b");
+    // var test2 = test.getElementsByTagName("a");
+    // test2.item(month).click()
+    let length = 0;
+
+
+    while (length < document.querySelectorAll(".month_navigation .date_large").length){
+        if (document.querySelectorAll(".month_navigation .date_large").item(length).innerText.indexOf(month) >-1){
+            document.querySelectorAll(".month_navigation .date_large").item(length).click();
+            length =13;
+        }
+        length++;
+    }
 }
 
 function selectDay(dayOption) {
